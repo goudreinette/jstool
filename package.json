@@ -1,0 +1,17 @@
+{
+  "name": "jstool",
+  "version": "1.0.0",
+  "description": "Simple CLI tool to act as alias for NPM scripts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rein van der Woerd",
+  "license": "ISC",
+  "bin": {
+    "jstool": "./index.js"
+  },
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
+}
