@@ -1,50 +1,11 @@
 #!/usr/bin/env node
-/**
- * JSTool
- * 
- * For running build tasks from a json file.
- */
-const path    = require('path')
-const fs      = require('fs')
-const exec    = require('child_process').exec
 const program = require('commander')
+const sync    = require('./sync')
 
 program
-  .arguments('<task>')
+  .command('sync')
   .option('-c, --config <config>', 'config file to use. default: ~/.tasks.json')
-  .action(readFile)
+  .option('-s, --script <script>', 'single script to copy')
+  .action(sync)
 
-program
-  .parse(process.argv)
-
-function readFile (task)
-{
-  if (program.config)
-    fs.readFile(process.cwd() + '/' + program.config, getTask)
-  else
-    fs.readFile('/home/reinvdwoerd/.tasks.json', getTask)
-}
-
-function getTask (err, data)
-{
-  if (err) throw err
-  const tasks = JSON.parse(data)
-  execute(program.rawArgs[2], tasks[program.rawArgs[2]])
-}
-
-function execute (taskKey, taskValue)
-{
-  console.log(`running task [${taskKey}]...`)
-  exec(taskValue, puts)
-}
-
-function puts (err, stdout, stderr)
-{
-  if (err)
-    console.log(err)
-  if (stdout)
-    console.log(stdout)
-  if (stderr)
-    console.log(stderr)
-}
-
+program.parse(process.argv)
