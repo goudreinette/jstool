@@ -13,7 +13,6 @@ const sync    = require('./sync')
 program
   .command('sync')
   .option('-c, --config <config>', 'file to use. default: ~/.scripts.json')
-  .option('-s, --script <script>', 'single script key to copy')
   .action(sync)
 
 program.parse(process.argv)
