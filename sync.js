@@ -9,15 +9,12 @@ function checkExistence (program)
 {
   try
   {
-    fs.accessSync('package.json', fs.F_OK)
+    sync(program)
   }
   catch (e)
   {
     console.log('package.json not found, running "npm init"...')
     childProcess.execSync('npm init -y')
-  }
-  finally
-  {
     sync(program)
   }
 }

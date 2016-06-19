@@ -7,6 +7,7 @@
     "watchify": "watchify index.js -o bundle.js -d -t [ babelify --presets es2015 ] -v",
     "react": "watchify {FILE_ACTIVE_PATH}/index.js -o {FILE_ACTIVE_PATH}/bundle.js -d -t [ babelify --presets [ es2015 react ] ] -v",
     "init": "npm init -y && npm i -D babelify babel-preset-es2015 babel-preset-react babel-preset-stage-3",
+    "test": "hello"
   },
   "author": "Rein van der Woerd",
   "license": "ISC",
