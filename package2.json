@@ -16,5 +16,15 @@
   },
   "dependencies": {
     "commander": "^2.9.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reinvdwoerd/jstool.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/reinvdwoerd/jstool/issues"
+  },
+  "homepage": "https://github.com/reinvdwoerd/jstool#readme"
 }

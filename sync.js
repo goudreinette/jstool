@@ -1,9 +1,34 @@
-module.exports = sync
+module.exports = checkExistence
 const os = require('os')
 const fs = require('fs')
 const path = require('path')
 const childProcess = require('child_process')
 
+
+function checkExistence (program)
+{
+  try
+  {
+    fs.accessSync('package.json', fs.F_OK)
+  }
+  catch (e)
+  {
+    console.log('package.json not found, running "npm init"...')
+    childProcess.execSync('npm init -y')
+  }
+  finally
+  {
+    sync(program)
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| sync
+|--------------------------------------------------------------------------
+| Description
+|
+*/
 function sync (program)
 {
   if (program.config)
@@ -13,10 +38,16 @@ function sync (program)
 
   const packageJSON = fs.readFileSync('package.json')
   const result = mergeScripts(scriptsFile, packageJSON)
-
   fs.writeFile('package.json', result, printResult)
 }
 
+/*
+|--------------------------------------------------------------------------
+| mergeScripts
+|------------- -------------------------------------------------------------
+| Description
+|
+*/
 function mergeScripts (scriptsFile, packageJSON)
 {
   const scripts = JSON.parse(scriptsFile)
@@ -29,6 +60,13 @@ function mergeScripts (scriptsFile, packageJSON)
   return JSON.stringify(target, null, 2)
 }
 
+/*
+|--------------------------------------------------------------------------
+| printResult
+|--------------------------------------------------------------------------
+| Description
+|
+*/
 function printResult (err)
 {
   if (err) console.error(error)
